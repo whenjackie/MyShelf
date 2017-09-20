@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' href='style.css'/>
+        <!--<script src='menu.js'></script>-->
+        <script src="jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/1.0.19/firebase.js"></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+
+        <title>MyShelf</title>
+    </head>
+    
+    <a name="backtotop">
+    
+    <body>
+        <!--<body background="https://www.designsnext.com/wp-content/uploads/2014/01/Attractive-Bookshelf-Design.jpg">-->
+    <!--Beginning of menu design-->
+       <div class="menu">
+          
+          <!-- Menu icon -->
+          <div class="icon-close">
+            <img src="https://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png">
+          </div>
+
+          <!-- Menu -->
+          <ul>
+            <li><a href="BookShelf.html">Book Search</a></li>
+            <li><a href="BookRanks.html">Book Ranks</a></li>
+            <li><a href="Calendar.html">Schedule</a></li>
+            <li><a href="Forum.html">Forum</a></li>
+            <li><a href="Team.html">The Team</a></li>
+          </ul>
+        </div>
+        <!-- Main body -->
+        <div class="jumbotron">
+          <div class="icon-menu">
+           <i class="fa fa-bars"></i>
+            Menu
+            </div>
+        </div>
+    <!-- end of menu design-->
+
+    <!--Homepage-->
+        <div data-role="page" id="BookSearch">
+            <!--Header-->
+            <div class="Mainheader">
+                <h1>MyShelf</h1>
+                <h2>What are you looking for?</h2>
+            </div>
+            <!--text boxes are made below-->
+            <div role="main" class="ui-content">
+                <div class="genreButton">
+                    <center>
+                        <input type="button" value="Biography" id='bioButton' data-theme="b"/>
+                        <input type="button" value="Business" id='busButton' data-theme="b"/>
+                        <input type="button" value="Classics" id='clscButton' data-theme="b"/>
+                        <input type="button" value="Contemporary" id='conButton' data-theme="b"/>
+                        <input type="button" value="Dystopia" id='dysButton' data-theme="b"/>
+                        <input type="button" value="Fantasy" id='fansButton' data-theme="b"/>
+                        <input type="button" value="History" id='hisButton' data-theme="b"/>
+                        <input type="button" value="Historical Fiction" id='histfButton' data-theme="b"/>
+                        <input type="button" value="Horror" id='horButton' data-theme="b"/>
+                        <input type="button" value="Mystery/Suspense" id='mysButton' data-theme="b"/>
+                        <input type="button" value="Non-Fiction" id='nficButton' data-theme="b"/>
+                        <input type="button" value="Plays" id='playButton' data-theme="b"/>
+                        <input type="button" value="Poems" id='poefiButton' data-theme="b"/>
+                        <input type="button" value="Realistic Fiction" id='rficButton' data-theme="b"/>
+                        <input type="button" value="Religious" id='relButton' data-theme="b"/>
+                        <input type="button" value="Romance" id='romButton' data-theme="b"/>
+                        <input type="button" value="Science" id='sciButton' data-theme="b"/>
+                        <input type="button" value="Sci Fi" id='scifiButton' data-theme="b"/>
+                        <input type="button" value="Supernatural" id='snatButton' data-theme="b"/>
+                        <input type="button" value="Young Adult" id='yaButton' data-theme="b"/>
+                    </center>
+                </div>
+            </div>
+            <div >
+                <center>
+                    <br></br>
+                        <div class="actionButtons">
+                        <input type="submit" value="Get Books" id='submitButton' style = "background-color:#5AB591 ">
+                        
+<form><button type="button" value="Clear Books" onClick="window.location.reload()" style="background-color:#70E2B5">Clear</form>
+                        </div>
+                </center>
+            </div>
+        </div>
+        
+        <div class = "bookstyle">
+            <div style="font-family:Josefin Sans">
+                <center>
+                    <ul id="resultList">
+                    </ul>
+                    <A HREF="#backtotop">Back To Top</A>
+                </center>
+            </div>
+        </div>
+        
+        <table style="width:300px">
+            <tr>
+              <td><ul "#resultList"></ul></td>
+              
+            </tr>
+        </table>
+        
+    <!-- Everything below here is JavaScript-->
+        <script>
+        
+            var numSelected = 0;
+            var main= function(){
+                
+                $('.icon-menu').click(function(){
+        
+        $('.menu').animate({
+            left:"0px"
+            },200);
+        
+        $('content').animate({
+            left:"200px"
+            },200);
+        });
+   $('.icon-close').click(function(){
+       $('.menu').animate({
+           left:"-285px"
+           },200);
+           
+        $('body').animate({
+            left:"0px"
+            },200);
+    });
+};
+
+            $(document).ready(main);
+            // making buttons change color
+            var buttons = $('input');
+            
+            buttons.click(function() {
+                var id=this.id;
+                if (id != "submitButton") {
+                    if (id != "clearResults") {
+                        var isHighlighted = $(this).hasClass("highlight");
+                    
+                        if (isHighlighted == true) {
+                            numSelected = numSelected - 1;
+                        }
+                        
+                        if (numSelected < 3) {
+                            if (isHighlighted != true) {
+                                numSelected = numSelected + 1;
+                            }
+                            
+                            $(this).toggleClass("highlight");
+                        } else {
+                            alert("Please select only three categories!");
+                        }
+                    }
+                }
+            });
+            var basenumber,basegenre;
+             //basenumber = 1;
+               //basegenre = "classics";
+            document.getElementById('bioButton').onclick = function() {
+               basenumber = 0;
+               basegenre = "biographies";
+            }
+            document.getElementById('clscButton').onclick = function() {
+                basenumber = 1;
+                basegenre = "classics";
+            }
+            document.getElementById('dysButton').onclick = function() {
+                basenumber = 2;
+                basegenre = "dystopia";
+            }
+            document.getElementById('fansButton').onclick = function() {
+                basenumber = 3;
+                basegenre = "fantasy";
+            }
+            document.getElementById('hisButton').onclick = function() {
+                basenumber = 4;
+                basegenre = "history";
+            }
+            document.getElementById('horButton').onclick = function() {
+                basenumber = 5;
+                basegenre = "horror";
+            }
+            document.getElementById('nficButton').onclick = function() {
+                basenumber = 6;
+                basegenre = "nonfiction";
+            }
+            document.getElementById('playButton').onclick = function() {
+                basenumber = 7;
+                basegenre = "plays";
+            }
+            document.getElementById('rficButton').onclick = function() {
+                basenumber = 8;
+                basegenre = "realistic fiction";
+            }
+
+            document.getElementById('relButton').onclick = function() {
+            basenumber = 9;
+            basegenre = "religious";
+            }
+
+            document.getElementById('romButton').onclick = function() {
+            basenumber = 10;
+            basegenre = "romance";
+            }
+            document.getElementById('sciButton').onclick = function() {
+            basenumber = 11;
+            basegenre = "science";
+            }
+            document.getElementById('scifiButton').onclick = function() {
+            basenumber = 12;
+            basegenre = "science fiction";
+            }
+            document.getElementById('snatButton').onclick = function() {
+            basenumber = 13;
+            basegenre = "supernatural";
+            }
+            document.getElementById('mysButton').onclick = function() {
+            basenumber = 14;
+            basegenre = "suspense mystery";
+            }
+            document.getElementById('yaButton').onclick = function() {
+            basenumber = 15;
+            basegenre = "young adult";
+            }
+            document.getElementById('busButton').onclick = function() {
+            basenumber = 16;
+            basegenre = "business";
+            }
+            document.getElementById('conButton').onclick = function() {
+            basenumber = 17;
+            basegenre = "Contemporary";
+            }
+            document.getElementById('poefiButton').onclick = function() {
+            basenumber = 18;
+            basegenre = "poems";
+            }
+            document.getElementById('histfButton').onclick = function() {
+            basenumber = 19;
+            basegenre = "historicalfiction";
+            }
+            $("#submitButton").click(function(){
+                // creates new Firebase
+                var BookList = new Firebase("https://burning-fire-5891.firebaseio.com/");
+                //var resultList = [];
+                //constant creates link to 'books' object
+                var constant = BookList.child('books');
+                //leads to the amount in the genre
+                var amountInList = constant.child(basenumber+'/'+'/amount');
+                amountInList.once('value', function(nameSnapshot) {
+                    // declares value of book amount based on the link
+                    var bookAmount = nameSnapshot.val();
+                    for (var i=0;i<bookAmount;i++){
+                        // adds on to link to lead to title, isbn, and author
+                        var title = constant.child(basenumber+"/"+basegenre+"/"+i+'/title');
+                        var isbn = constant.child(basenumber+'/'+basegenre+'/'+i+'/ISBN');
+                        var author = constant.child(basenumber+'/'+basegenre+'/'+i+'/author');
+                        
+                        
+                        //var covers = isbn.toString();
+                        isbn.once('value', function(nameSnapshot) {
+                            var displayisbn = nameSnapshot.val();
+                            //resultList.push(displayisbn);
+                            //$('#testList').prepend('<li>'+ displayisbn +'</li>');
+                            $('#resultList').prepend('<br><img src="https://covers.openlibrary.org/b/isbn/'+ displayisbn + '-M.jpg" />');
+                            });
+                        
+                        
+                        author.once('value', function(nameSnapshot) {
+                            var displayauthor = nameSnapshot.val();
+                            $('#resultList').prepend(displayauthor);
+                            });
+                            
+                        //var path = title.toString();
+                        title.once('value', function(nameSnapshot) {
+                            var displayTitle = nameSnapshot.val();
+                            //resultList.push(displayTitle);
+                            $('#resultList').prepend('<li>'+ displayTitle +'</li>');
+                            });
+                            
+                        
+                    }
+                });
+        });
+            
+        </script>
+    </body>
+</html>

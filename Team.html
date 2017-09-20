@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+	<link rel='stylesheet' href='style.css'/>
+	<!--<script src='menu.js'></script>-->
+	<script src="jquery-1.11.1.min.js"></script>
+	
+
+	<title>MyShelf</title>
+</head>
+<body>
+	<!--Beginning of menu design-->
+	   <div class="menu">
+		  
+		  <!-- Menu icon -->
+		  <div class="icon-close">
+			<img src="https://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png">
+		  </div>
+
+		  <!-- Menu -->
+		  <ul>
+			<li><a href="BookShelf.html">Book Search</a></li>
+			<li><a href="BookRanks.html">Book Ranks</a></li>
+			<li><a href="Calendar.html">Schedule</a></li>
+			<li><a href="Forum.html">Forum</a></li>
+			<li><a href="Team.html">The Team</a></li>
+		  </ul>
+		</div>
+		<!-- Main body -->
+		<div class="jumbotron">
+		  <div class="icon-menu">
+		   <i class="fa fa-bars"></i>
+			Menu
+			</div>
+		</div>
+	<!-- end of menu design-->
+
+	<div class="content">
+	
+		<!--Header-->
+		<div class="Mainheader">
+			<h1>MyShelf</h1>
+			<h2>Our Developers!<h2>
+			<h3>Jade Sessions, Jacqueline Wen, Nana Appea, and Maria Javier</h3>
+			
+			<h4> Jade Sessions</h4>
+			<center><div class="Jadeimage">
+			</div></center>
+			<p>Jade is a 16 year old rising senior at Uniondale High School.
+			"I never thought I would enjoy computer science so much.
+			It never seemed tangible to me but now I know it can take me anywhere I could possibly dream of.
+			I plan on studying computer science and using it to further combine my passions.
+			She hopes to pursue computer science in college and use it to further combine her passions.</p>
+			
+			
+			<h4> Jacqueline Wen</h4>
+			<center><div class="Jackieimage">
+			</div></center>
+			<p>Jacqueline Wen, age 17, is a rising senior attending John P. Stevens High School in New Jersey.
+			"I was honestly never aware of the gender gap in technology as it was never evident in my school's computer science courses ,
+			however, as I read more about the statistics and talked about the issue with my friends already in the field,
+			I was surprised by the general consensus that there were hardly any females in tech."
+			</p>
+			
+			<h4>Nana Appea</h4>
+			<center><div class="Nanaimage">
+			</div></center>
+			<p>Nana Appea is a 17 year old girl who attends Edward R. Murrow High School in Brooklyn, NY.
+			"I never really knew what Computer Science was until I was well within the Girls Who Code summer immersion program.
+			I thought to myself "Oh cool" I might be able to make video games and other cool stuff,
+			but now I know there is so much more to Computer Science than that,
+			and it can be meaningful and really make a huge difference in the world by helping people.
+			I plan to explore more subjects in Computer Science in the future."</p>
+			
+			<h4>Maria Javier</h4>
+			<center><div class="Mariaimage">
+			</div></center>
+			<p>As a rising senior at Notre Dame School, Maria joined Girls Who Code because she wanted to learn more about computer science
+			and be surrounded by an encouraging environment full of other girls that share the same passion.
+			" I always loved science ever since I visited the Museum of Natural history.
+			Introduced to computer science at Girls Who Code, I know that I can use computer science with engineering and integrate it to help others in their everyday lives.
+			I know that I am equipped with a powerful tool that can change the future. "</p>
+		</div>
+		</div>
+
+		<!--text boxes are made below-->
+		
+	</div>
+	
+	<!-- Everything below here is JavaScript-->
+	<script>console.log("whatup");
+var main= function(){
+console.log("did main work?");
+    $('.icon-menu').click(function(){
+		
+        $('.menu').animate({
+            left:"0px"
+            },200);
+        
+        $('content').animate({
+            left:"200px"
+            },200);
+        });
+   $('.icon-close').click(function(){
+       $('.menu').animate({
+           left:"-285px"
+           },200);
+           
+		$('body').animate({
+			left:"0px"
+			},200);
+	});
+};
+
+$(document).ready(main);
+    
+    </script>
+	</body>
+</html>
